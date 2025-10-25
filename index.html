@@ -7,17 +7,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
+        <header>
+            <h1>Calculadora de TMB</h1>
+            <p>(Taxa Metabólica Basal)</p>
+        </header>
 
-    <div class="container">
-        <h1>Gerador de Fichas de Avaliação</h1>
-        <p>
-            Clique no botão abaixo. Na janela que abrir,
-            <br>
-            <b>escolha o destino "Salvar como PDF".</b>
-        </p>
-        
-        <div class="controls">
-            <button id="generatePdfBtn">Gerar PDF de Todos os Trabalhos</button>
+        <form id="tbmForm">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="idade">Idade (anos):</label>
+                <input type="number" id="idade" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="altura">Altura (cm):</label>
+                <input type="number" id="altura" min="1" step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="peso">Peso (kg):</label>
+                <input type="number" id="peso" min="1" step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" required>
+                    <option value="">Selecione...</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
+            </div>
+
+            <button type="submit">Calcular e Salvar</button>
+        </form>
+
+        <div id="resultado"></div>
+
+        <div class="historico-container">
+            <h2>Histórico</h2>
+            <ul id="listaHistorico">
+                <li>Nenhum cálculo salvo ainda.</li>
+            </ul>
+            <button id="limparHistorico">Limpar Histórico</button>
         </div>
     </div>
 

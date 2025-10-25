@@ -1,174 +1,114 @@
-document.addEventListener('DOMContentLoaded', function() {
+// --- Selecionando Elementos do DOM ---
+        const form = document.getElementById('tbmForm');
+        const resultadoDiv = document.getElementById('resultado');
+        const listaHistorico = document.getElementById('listaHistorico');
+        const btnLimpar = document.getElementById('limparHistorico');
 
-    // --- LISTA DE TRABALHOS ---
-    const workList = [
-        "PALAVRAS QUE CUIDAM: A MEDIAÇÃO AFETUOSA DA LITERATURA NA PEDIATRIA HOSPITALAR",
-        "INFÂNCIA, RACISMO E EDUCAÇÃO: A CONSTRUÇÃO DE UMA ESCOLA INCLUSIVA",
-        "PRODUÇÃO DE MUDAS DE DELONIX REGIA SOB DIFERENTES VOLUMES DE TUBETES E FORMULAÇÕES DE OSMOCOTE®",
-        "DESAFIOS E POSSIBILIADES NA INCLUSÃO DE CRIANÇAS COM AUTISMO NA EDUCAÇÃO INFANTIL: UM OLHAR DA DOCÊNCIA",
-        "UTILIZAÇÃO DA CASCA DO URUCUM PARA A PRODUÇÃO DE MUDAS DE SIBIPIRUNA SOB DIFERENTES NÍVEIS DE SOMBREAMENTO",
-        "PARÂMETROS MORFOLÓGICOS DE MUDAS DE MORINGA SOB DIFERENTES VOLUMES DE TUBETES E SUBSTRATOS",
-        "APRENDENDO COM O LÚDICO: O BINGO SILÁBICO COMO FERRAMENTA DE ALFABETIZAÇÃO NO 1º ANO",
-        "EFEITO DA GRANULOMETRIA E PROPORÇÃO DA CASCA DO CAFÉ NA COMPOSIÇÃO DE SUBSTRATOS PARA A PRODUÇÃO DE MUDAS DE PELTOPHORUM DUBIUM (SPRENGEL) TAUBERT",
-        "PRODUÇÃO DE MUDAS DE MORINGA SOB DIFERENTES VOLUMES DE TUBETES E DOSES DE ADUBO DE LIBERAÇÃO LENTA",
-        "INFLUÊNCIA DO SOMBREAMENTO E DO VOLUME DO TUBETE NA PRODUÇÃO DE MUDAS DE CANAFÍSTULA",
-        "A PALAVRA ESCAPOU!: UMA EXPERIÊNCIA DO PIBID COM O ENSINO DA ORTOGRAFIA",
-        "DISTRIBUIÇÃO ESPACIAL DO PARÂMETRO CURVE NUMBER (CN) EM FUNÇÃO DE DIFERENTES CONFIGURAÇÕES DE SOLO, RELEVO E USO/COBERTURA DA TERRA NA BACIA EXPERIMENTAL DO RIBEIRÃO ALMÊCEGAS – NOVORIZONTE/MG",
-        "PIBID E EDUCAÇÃO ANTIRRACISTA: PRÁTICAS NA EDUCAÇÃO INFANTIL",
-        "SECAGEM EM CAMADA DE ESPUMA DA POLPA DE MARACUJÁ: AVALIAÇÃO DA CINÉTICA E PARÂMETROS TECNOLÓGICOS DO PRODUTO EM PÓ.",
-        "CULTURA, DANÇA E ALFABETIZAÇÃO: PROJETO INTEGRADO SERTÃO E FOLCLORE EM PRÁTICAS",
-        "NEUROCIÊNCIA E EDUCAÇÃO: VIVÊNCIAS E CONTRIBUIÇÕES PARA A ALFABETIZAÇÃO",
-        "ASPECTOS GERAIS DO DESEMPENHO DA PITAYA (HYLOCEREUS SPP.) NAS CONDIÇÕES EDAFOCLIMÁTICAS DE SALINAS, MG.",
-        "EXPERIÊNCIAS DO PIBID: JOGOS PEDAGÓGICOS",
-        "PRODUÇÃO DO BIOCHAR A PARTIR DE BIOMASSA DE ESPÉCIES DE BAMBU SP.",
-        "EDUCAÇÃO AMBIENTAL NA ESCOLA: UM OLHAR A PARTIR DA PRÁTICA DOCENTE",
-        "CUIDADO, TRYPANOSOMA CRUZI NA FEIRA",
-        "LER PARA APRENDER: CONSTRUINDO O HÁBITO DA LEITURA UMA EXPERIÊNCIA DO PIBID",
-        "PRODUTIVIDADE DE PITAYA HILOCEREUS POLYRHIZUS EM COMPARAÇÃO COM A HILOCEREUS UNDATUS CULTIVADAS EM PROJETO DE PESQUISA NO MUNICÍPIO DE SALINAS, MINAS GERAIS",
-        "USO DE SORO DE QUEIJO NA SUPLEMENTÇÃO DE BOVINOS",
-        "A ARTE DA CONTAÇÃO DE HISTÓRIAS PARA CRIANÇAS HOSPITALIZADAS",
-        "EDUCAÇÃO DE TODOS E PARA TODOS: CURRICULARIZAÇÃO DA EXTENSÃO E INCLUSÃO EDUCACIONAL",
-        "CULTIVANDO AS SEMENTES DO SABER",
-        "ENTRE O LABORATÓRIO E O BEBEDOURO: AVALIAÇÃO DA QUALIDADE DA ÁGUA NO IFNMG – SALINAS",
-        "PRÁTICAS PEDAGÓGICAS E EDUCAÇÃO AMBIENTAL: UM ESTUDO DE CASO EM UMA ESCOLA PÚBLICA EM SALINAS/MG",
-        "PRÁTICA PEDAGÓGICA, EDUCAÇÃO AMBIENTAL E INTERDISCIPLINARIDADE :ARTICULAÇOES PARA UMA FORMAÇÃO DE PROFESSORES CRITICA E TRANSFORMADORA",
-        "HIV NA FEIRA: MITOS E VERDADES",
-        "FORMAÇÃO CONTINUADA DE PROFESSORES DE MATEMÁTICA: UM PROJETO DE EXTENSÃO NO MUNICÍPIO DE SALINAS",
-        "RELATO DE EXPERIÊNCIA NO PIBID: REFLEXÕES SOBRE DESIGUALDADE SOCIAL E FORMAÇÃO DOCENTE",
-        "SERES VIVOS E NÃO VIVOS NA EDUCAÇÃO INFANTIL: UMA EXPERIÊNCIA NO PIBID",
-        "EDUCAÇÃO AMBIENTAL NA PRÁTICA PEDAGÓGica",
-        "EDUCAÇÃO AMBIENTAL NO CURRÍCULO ESCOLAR: PRÁTICAS DE PROFESSORES(AS) DE UMA ESCOLA PÚBLICA DE SALINAS/MG",
-        "TECNOLOGIA NA PRÁTICA DO APRENDIZADO: RELATO DE EXPERIÊNCIA NO ENSINO FUNDAMENTAL I COM O PIBID",
-        "ROBÓTICA EDUCACIONAL E APRENDIZAGEM ATIVA: EXPERIMENTAÇÃO, LUDICIDADE E ENSINO DE ENERGIA MECÂNICA EM ESCOLAS PÚBLICAS DE SALINAS (MG)",
-        "A GLOBALIZAÇÃO E SEUS IMPACTOS NA EDUCAÇÃO PROFISSIONAL E NA FORMAÇÃO DE PROFESSORES",
-        "JOVENS MINEIROS SUSTENTÁVEIS: EDUCAÇÃO AMBIENTAL E PROTAGONISMO INFANTIL NA ESCOLA MUNICIPAL DR. WALTER FERREIRA DE ARAÚJO",
-        "LABORATÓRIO DE PRÁTICAS PEDAGÓGICAS : APRENDIZAGEM ATIVA E NOVOS ARRANJOS PEDAGÓGICOS",
-        "A UTILIZAÇÃO DE MATERIAIS MANIPULATIVOS NA INTRODUÇÃO DO TEOREMA DE PITÁGORAS: UM RELATO DE EXPERIÊNCIA",
-        "EDUCAÇÃO AMBIENTAL: COMO OS PROFESSORES ESTÃO TRABALHANDO O TEMA EM SALA DE AULA?",
-        "PRATICA PEDAGOGICA E EDUCAÇAO AMBIENTAL: REFLEXOES NECESSARIAS",
-    ];
-    
-    const generatePdfBtn = document.getElementById('generatePdfBtn');
-    let allPagesContainer = null; // Variável para guardar o container
+        // --- Chave do LocalStorage ---
+        const CHAVE_STORAGE = 'historicoTBM';
 
-    // Função que cria o HTML para uma única página
-    function createPageHTML(title) {
-        return `
-            <div class="page-container">
-                <h2>Ficha de Avaliação de Trabalho</h2>
-                <h3>Trabalho: <span>${title}</span></h3>
-                                                <table>
-                    <thead>
-                        <tr>
-                            <th>Pontos Obrigatorios</th>
-                            <th>Sim</th>
-                            <th>Não</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>Apresentou um produto?</b></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Pelo menos um dos autores estava presente?</b></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Critério de Avaliação</th>
-                            <th>Pontuação Máxima</th>
-                            <th>Pontuação Atribuída</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>Organização:</b> Discorreu sobre o Objetivo, Material e Métodos, Resultados e Considerações do projeto?</td>
-                            <td class="center">20</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Estética e Clareza:</b> Estética dos produtos do trabalho e clareza na sua apresentação.</td>
-                            <td class="center">30</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Domínio do Conteúdo:</b> Domínio do conteúdo abordado.</td>
-                            <td class="center">30</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Linguagem:</b> Linguagem adequada.</td>
-                            <td class="center">10</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Impacto na Sociedade:</b> O conhecimento desenvolvido no trabalho poderá apresentar impactos sociais, econômicos, ambientais ou culturais significativos?</td>
-                            <td class="center">10</td>
-                            <td></td>
-                        </tr>
-                        <tr class="total-row">
-                            <td><b>PONTUAÇÃO TOTAL</b></td>
-                            <td class="center"><b>100</b></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="footer">
-                    <p><strong>Avaliador(a):</strong> ___________________________________________________________</p>
-                    <p><strong>Data:</strong> ____/____/______</p>
-                </div>
-            </div>
-        `;
-    }
+        // --- Funções ---
 
-    // Função para limpar a tela depois da impressão
-    function afterPrint() {
-        console.log("Evento 'afterprint' disparado. Limpando a tela.");
-        // Remove o container das páginas
-        if (allPagesContainer) {
-            document.body.removeChild(allPagesContainer);
-            allPagesContainer = null;
+        /**
+         * Carrega e exibe o histórico salvo no localStorage.
+         */
+        function carregarHistorico() {
+            const historico = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
+            listaHistorico.innerHTML = ''; // Limpa a lista atual
+
+            if (historico.length === 0) {
+                listaHistorico.innerHTML = '<li>Nenhum cálculo salvo ainda.</li>';
+                return;
+            }
+
+            // Adiciona cada item do histórico na lista (ul)
+            historico.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.nome} (${item.sexo}) - ${item.idade} anos, ${item.peso}kg, ${item.altura}cm | TMB: ${item.tbm.toFixed(2)} kcal`;
+                listaHistorico.appendChild(li);
+            });
         }
-        // Reabilita o botão
-        generatePdfBtn.disabled = false;
-        generatePdfBtn.textContent = 'Gerar PDF de Todos os Trabalhos';
-        
-        // Remove o 'listener' para não acumular
-        window.removeEventListener('afterprint', afterPrint);
-    }
 
-    // Adiciona o evento de clique ao botão
-    generatePdfBtn.addEventListener('click', function() {
-        
-        generatePdfBtn.disabled = true;
-        generatePdfBtn.textContent = 'Preparando para impressão...';
-        console.log("Gerando HTML das páginas...");
+        /**
+         * Salva um novo cálculo no localStorage.
+         */
+        function salvarCalculo(nome, idade, peso, altura, sexo, tbm) {
+            const historico = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
+            
+            const novaEntrada = {
+                nome,
+                idade,
+                peso,
+                altura,
+                sexo,
+                tbm,
+                data: new Date().toISOString()
+            };
 
-        // Cria o container que vai guardar todas as páginas
-        allPagesContainer = document.createElement('div');
-        allPagesContainer.id = 'pdf-all-pages'; // ID para o CSS
-        
-        // Preenche o container com todas as páginas
-        workList.forEach(workName => {
-            allPagesContainer.innerHTML += createPageHTML(workName);
-        });
+            historico.push(novaEntrada);
+            localStorage.setItem(CHAVE_STORAGE, JSON.stringify(historico));
+        }
 
-        // Adiciona o container ao corpo do documento (vai ficar visível)
-        document.body.appendChild(allPagesContainer);
-        console.log("Páginas adicionadas ao DOM. Chamando window.print().");
+        /**
+         * Lida com o envio do formulário.
+         */
+        function handleCalcular(event) {
+            event.preventDefault(); // Impede o recarregamento da página
 
-        // Adiciona o 'listener' que vai limpar a tela DEPOIS que
-        // a janela de impressão for fechada.
-        window.addEventListener('afterprint', afterPrint);
+            // Pega os valores dos campos do formulário
+            const nome = document.getElementById('nome').value;
+            const idade = parseFloat(document.getElementById('idade').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            const peso = parseFloat(document.getElementById('peso').value);
+            const sexo = document.getElementById('sexo').value;
 
-        // Chama a janela de impressão do navegador
-        // É AQUI QUE VOCÊ DEVE ESCOLHER "SALVAR COMO PDF"
-        window.print();
-    });
-});
+            // Validação simples
+            if (!nome || isNaN(idade) || isNaN(altura) || isNaN(peso) || !sexo) {
+                resultadoDiv.innerHTML = 'Por favor, preencha todos os campos corretamente.';
+                resultadoDiv.style.color = 'red';
+                return;
+            }
+
+            let tbm = 0;
+
+            // Aplica a fórmula correta baseada no sexo
+            if (sexo === 'masculino') {
+                // TBM = 88.362 + (13.397 * peso [kg]) + (4.799 * altura [cm]) – (5.677 * idade [anos])
+                tbm = 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade);
+            } else if (sexo === 'feminino') {
+                // TBM = 447.593 + (9.247 * peso) + (3.098 * altura) – (4.330 * idade)
+                tbm = 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
+            }
+
+            // Exibe o resultado
+            resultadoDiv.style.color = 'var(--cor-texto)'; // Reseta a cor
+            resultadoDiv.innerHTML = `Olá, ${nome}!<br>Sua TMB é de <span>${tbm.toFixed(2)}</span> calorias/dia.`;
+
+            // Salva e atualiza o histórico
+            salvarCalculo(nome, idade, peso, altura, sexo, tbm);
+            carregarHistorico();
+
+            // Opcional: Limpar o formulário após salvar
+            // form.reset(); 
+        }
+
+        /**
+         * Limpa todo o histórico do localStorage.
+         */
+        function limparHistorico() {
+            if (confirm('Tem certeza que deseja apagar todo o histórico?')) {
+                localStorage.removeItem(CHAVE_STORAGE);
+                carregarHistorico();
+            }
+        }
+
+        // --- Event Listeners ---
+
+        // Chama a função handleCalcular quando o formulário for enviado
+        form.addEventListener('submit', handleCalcular);
+
+        // Chama a função limparHistorico quando o botão for clicado
+        btnLimpar.addEventListener('click', limparHistorico);
+
+        // Carrega o histórico assim que a página é aberta
+        document.addEventListener('DOMContentLoaded', carregarHistorico);
