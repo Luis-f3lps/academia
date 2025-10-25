@@ -75,6 +75,7 @@
 
             salvarCalculo(nome, idade, peso, altura, sexo, tbm);
             carregarHistorico();
+            form.reset();
         }
 
         /**
