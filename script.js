@@ -1,21 +1,15 @@
-// --- Selecionando Elementos do DOM ---
         const form = document.getElementById('tbmForm');
         const resultadoDiv = document.getElementById('resultado');
-        const corpoTabelaHistorico = document.getElementById('corpoTabelaHistorico'); // MUDADO
+        const corpoTabelaHistorico = document.getElementById('corpoTabelaHistorico'); 
         const btnLimpar = document.getElementById('limparHistorico');
-        const btnImprimir = document.getElementById('imprimirHistorico'); // NOVO
+        const btnImprimir = document.getElementById('imprimirHistorico'); 
         
-        // --- Chave do LocalStorage ---
         const CHAVE_STORAGE = 'historicoTBM';
 
-        // --- Funções ---
 
-        /**
-         * Carrega e exibe o histórico salvo no localStorage na TABELA.
-         */
         function carregarHistorico() {
             const historico = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
-            corpoTabelaHistorico.innerHTML = ''; // Limpa o corpo da tabela
+            corpoTabelaHistorico.innerHTML = ''; 
 
             if (historico.length === 0) {
                 corpoTabelaHistorico.innerHTML = '<tr><td colspan="6" style="text-align: center;">Nenhum cálculo salvo ainda.</td></tr>';
@@ -37,9 +31,7 @@
             });
         }
 
-        /**
-         * Salva um novo cálculo no localStorage.
-         */
+
         function salvarCalculo(nome, idade, peso, altura, sexo, tbm) {
             const historico = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
             
@@ -91,17 +83,15 @@
         function limparHistorico() {
             if (confirm('Tem certeza que deseja apagar todo o histórico?')) {
                 localStorage.removeItem(CHAVE_STORAGE);
-                carregarHistorico(); // Atualiza a tabela para o estado "vazio"
+                carregarHistorico(); 
             }
         }
 
-        // --- Event Listeners ---
         form.addEventListener('submit', handleCalcular);
         btnLimpar.addEventListener('click', limparHistorico);
         
-        // NOVO Event Listener para impressão
         btnImprimir.addEventListener('click', () => {
-            window.print(); // O CSS @media print cuida da mágica
+            window.print();
         });
 
         // Carrega o histórico assim que a página é aberta
