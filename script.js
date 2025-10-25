@@ -79,7 +79,7 @@
             }
 
             resultadoDiv.style.color = 'var(--cor-texto)';
-            resultadoDiv.innerHTML = `Olá, ${nome}!<br>Sua TMB é de <span>${tbm.toFixed(2)}</span> calorias/dia.`;
+            resultadoDiv.innerHTML = `Dados de ${nome}, salvos!<br>Sua TMB é de <span>${tbm.toFixed(2)}</span> calorias/dia.`;
 
             salvarCalculo(nome, idade, peso, altura, sexo, tbm);
             carregarHistorico();

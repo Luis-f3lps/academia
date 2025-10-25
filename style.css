@@ -158,13 +158,13 @@ button[type="submit"]:hover { background-color: #0056b3; }
 #limparHistorico:hover { background-color: #dc3545; color: white; }
 
 
-/* --- ESTILOS DE IMPRESSÃO (PDF BRANCO) - VERSÃO CORRIGIDA --- */
+/* --- ESTILOS DE IMPRESSÃO (PDF BRANCO) - VERSÃO OTIMIZADA --- */
 @media print {
     
     /* Define o tamanho e margens da página de impressão */
     @page {
         size: A4;
-        margin: 1.5cm;
+        margin: 2cm; /* Margens um pouco maiores para um visual mais limpo */
     }
 
     /* Reseta o body e remove o padding da tela */
@@ -173,6 +173,7 @@ button[type="submit"]:hover { background-color: #0056b3; }
         padding: 0;
         margin: 0;
         font-family: Arial, sans-serif; /* Fonte mais segura para impressão */
+        display: block; /* Garante que o body não seja display: grid na impressão */
     }
 
     /* Esconde o que NÃO queremos imprimir */
@@ -183,48 +184,59 @@ button[type="submit"]:hover { background-color: #0056b3; }
         display: none;
     }
 
-    /* Remove estilos de "container" da tela */
+    /* Remove estilos de "container" da tela para que o conteúdo ocupe a largura total de impressão */
     .container {
         box-shadow: none;
         border: none;
         width: 100%;
-        max-width: 100%;
+        max-width: none; /* Permite que ocupe toda a largura disponível */
         padding: 0;
+        margin: 0; /* Garante que não há margem no container principal */
+        border-radius: 0;
     }
 
-    /* Ajusta o container do histórico */
+    /* Ajusta o container do histórico para impressão */
     .historico-container {
-        padding: 0;
+        padding: 0; /* Remove o padding da tela */
+        width: 100%; /* Ocupa a largura total dentro das margens da página */
+        margin: 0 auto; /* Centraliza o conteúdo se o width não for 100% */
     }
 
-    /* Remove a rolagem e borda da tabela */
+    /* Remove a rolagem e borda da tabela na impressão */
     .tabela-wrapper {
         overflow: visible;
         max-height: none;
         border: none;
+        padding: 0;
+        margin: 0;
     }
     
     /* Estiliza a tabela para impressão */
     .historico-tabela {
         width: 100%;
         border-collapse: collapse; /* Garante que as bordas fiquem limpas */
+        table-layout: auto; /* Permite que as colunas se ajustem ao conteúdo */
     }
     
     .historico-tabela th, .historico-tabela td {
-        border: 1px solid #777; /* Borda cinza visível */
-        padding: 8px;
+        border: 1px solid #ccc; /* Borda cinza mais clara */
+        padding: 8px 10px; /* Padding interno das células */
         font-size: 10pt;
+        text-align: left; /* Garante que o texto comece na esquerda */
+        word-wrap: break-word; /* Quebra palavras longas para evitar corte */
     }
 
     .historico-tabela th {
-        background-color: #f0f0f0 !important; /* Fundo cinza claro */
+        background-color: #f8f8f8 !important; /* Fundo cinza bem claro */
         font-weight: bold;
     }
 
     .historico-container h2 {
         text-align: center;
-        margin-bottom: 15px;
-        font-size: 14pt;
+        margin-bottom: 20px; /* Mais espaço abaixo do título */
+        font-size: 16pt; /* Título um pouco maior */
+        color: #333;
         border-bottom: none; /* Remove a borda do título na impressão */
+        padding-bottom: 0;
     }
 }
