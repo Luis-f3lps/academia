@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.controls {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.controls button {
+    padding: 12px 25px;
+    border: none;
+    background-color: #007bff; /* Mudei a cor de volta */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+.controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Estilos para CADA página
+   Isto será usado tanto na tela (quando aparecer)
+   quanto no PDF final.
+*/
+.page-container {
+    background-color: #fff;
+    padding: 2cm;
+    width: 21cm;
+    height: 29.7cm;
+    box-sizing: border-box;
+    text-align: left;
+    position: relative; 
+    margin: 20px auto; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    
+    /* ESSENCIAL: Garante a quebra de página no PDF */
+    page-break-after: always; 
+}
+
+.page-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.page-container h3 {
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+.page-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.page-container th, .page-container td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.page-container thead {
+    background-color: #f2f2f2;
+}
+
+.page-container th {
+    font-weight: bold;
+    text-align: center;
+}
+
+.page-container td.center {
+    text-align: center;
+    font-weight: bold;
+    width: 150px;
+}
+
+.page-container .total-row {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+.page-container .footer {
+    position: absolute;
+    bottom: 2cm;
+    left: 2cm;
+    right: 2cm;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+.page-container .footer p {
+    margin-bottom: 20px;
+}
+
+
+/* --- NOVA SEÇÃO ADICIONADA --- */
+/* Estilos que só se aplicam na hora de Imprimir / Salvar como PDF */
+@media print {
+    /* Esconde a interface (botões, título, etc) */
+    body > .container {
+        display: none;
+    }
+
+    /* Garante que o container das páginas de PDF ocupe a tela */
+    body > #pdf-all-pages {
+        display: block;
+    }
+    
+    /* Remove margens e sombras de tela */
+    .page-container {
+        margin: 0;
+        box-shadow: none;
+    }
+
+    /* Força o navegador a imprimir os fundos (tabelas) */
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
