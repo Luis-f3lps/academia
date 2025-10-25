@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Fichas de Avaliação</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="container">
-        <header>
+    <div class="container">
+        <header class="no-print">
             <h1>Calculadora de TMB</h1>
             <p>(Taxa Metabólica Basal)</p>
         </header>
 
-        <form id="tbmForm">
+        <form id="tbmForm" class="no-print">
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" required>
@@ -46,18 +48,38 @@
             <button type="submit">Calcular e Salvar</button>
         </form>
 
-        <div id="resultado"></div>
+        <div id="resultado" class="no-print"></div>
 
         <div class="historico-container">
-            <h2>Histórico</h2>
-            <ul id="listaHistorico">
-                <li>Nenhum cálculo salvo ainda.</li>
-            </ul>
-            <button id="limparHistorico">Limpar Histórico</button>
+            <h2>Histórico de Cálculos</h2>
+            <div class="tabela-wrapper">
+                <table class="historico-tabela" id="tabelaHistorico">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Altura (cm)</th>
+                            <th>Peso (kg)</th>
+                            <th>Sexo</th>
+                            <th>TMB (kcal)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaHistorico">
+                        <tr>
+                            <td colspan="6" style="text-align: center;">Nenhum cálculo salvo ainda.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="botoes-historico no-print">
+                <button id="imprimirHistorico" class="btn">Imprimir Histórico</button>
+                <button id="limparHistorico" class="btn">Limpar Histórico</button>
+            </div>
         </div>
     </div>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

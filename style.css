@@ -25,7 +25,7 @@
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 700px; /* Aumentei um pouco para a tabela caber */
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: var(--sombra);
@@ -49,64 +49,35 @@
             gap: 15px;
         }
 
+        /* Estilos para o formulário (sem alterações) */
         .form-group {
             display: flex;
             flex-direction: column;
         }
-
-        .form-group label {
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--cor-borda);
-            border-radius: 5px;
-            font-size: 1rem;
+        .form-group label { margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 12px 15px; border: 1px solid var(--cor-borda);
+            border-radius: 5px; font-size: 1rem;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--cor-primaria);
+        .form-group input:focus, .form-group select:focus {
+            outline: none; border-color: var(--cor-primaria);
             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
         }
-
         button[type="submit"] {
-            background-color: var(--cor-primaria);
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            padding: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 10px;
+            background-color: var(--cor-primaria); color: white; font-size: 1rem;
+            font-weight: 600; border: none; padding: 15px; border-radius: 5px;
+            cursor: pointer; transition: background-color 0.2s; margin-top: 10px;
         }
-
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+        button[type="submit"]:hover { background-color: #0056b3; }
 
         #resultado {
-            padding: 0 25px 25px;
-            text-align: center;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #333;
+            padding: 0 25px 25px; text-align: center;
+            font-size: 1.1rem; font-weight: 600; color: #333;
         }
+        #resultado span { color: var(--cor-primaria); font-size: 1.5rem; }
 
-        #resultado span {
-            color: var(--cor-primaria);
-            font-size: 1.5rem;
-        }
-
+        /* --- NOVOS ESTILOS PARA A TABELA --- */
         .historico-container {
             padding: 0 25px 25px;
         }
@@ -118,38 +89,127 @@
             padding-bottom: 5px;
         }
 
-        #listaHistorico {
-            list-style: none;
-            max-height: 200px;
+        .tabela-wrapper {
+            max-height: 250px;
             overflow-y: auto;
             border: 1px solid var(--cor-borda);
             border-radius: 5px;
-            padding: 10px;
         }
 
-        #listaHistorico li {
-            padding: 8px 5px;
-            border-bottom: 1px dashed var(--cor-borda);
-            font-size: 0.9rem;
+        .historico-tabela {
+            width: 100%;
+            border-collapse: collapse;
         }
-        
-        #listaHistorico li:last-child {
+
+        .historico-tabela th,
+        .historico-tabela td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        .historico-tabela th {
+            background-color: #f8f9fa;
+            font-size: 0.85rem;
+            font-weight: 600;
+            position: sticky; /* Cabeçalho gruda no topo ao rolar */
+            top: 0;
+        }
+
+        .historico-tabela tbody tr:last-child td {
             border-bottom: none;
         }
+        
+        .historico-tabela tbody tr:hover {
+            background-color: #f1f3f5;
+        }
 
-        #limparHistorico {
-            background: none;
-            border: 1px solid #dc3545;
-            color: #dc3545;
+        .historico-tabela td {
+            font-size: 0.9rem;
+        }
+
+        .botoes-historico {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Botão genérico */
+        .btn {
             padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.8rem;
-            margin-top: 10px;
-            transition: background-color 0.2s, color 0.2s;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         }
 
-        #limparHistorico:hover {
-            background-color: #dc3545;
+        #imprimirHistorico {
+            background-color: #28a745;
             color: white;
+            border-color: #28a745;
+        }
+        #imprimirHistorico:hover { background-color: #218838; }
+
+        #limparHistorico {
+            background: none;
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+        #limparHistorico:hover { background-color: #dc3545; color: white; }
+        
+
+        /* --- ESTILOS DE IMPRESSÃO --- */
+        /* Isso só é aplicado quando a janela de impressão é aberta */
+        @media print {
+            /* Esconde tudo, exceto o container do histórico */
+            body > *:not(.historico-container) {
+                display: none;
+            }
+
+            /* Reseta o body para impressão */
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+
+            /* Garante que o container do histórico ocupe a página */
+            .container {
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .historico-container {
+                padding: 0;
+            }
+            
+            /* Esconde os botões e a barra de rolagem na impressão */
+            .botoes-historico,
+            .tabela-wrapper {
+                display: block;
+                max-height: none;
+                overflow: visible;
+                border: none;
+            }
+
+            .historico-tabela th, .historico-tabela td {
+                border: 1px solid #ddd; /* Adiciona bordas para impressão */
+            }
+
+            .historico-tabela th {
+                background-color: #eee;
+            }
+
+            /* Força quebra de página antes, se necessário (opcional) */
+            .historico-container {
+                page-break-before: always;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 15px;
+            }
         }
