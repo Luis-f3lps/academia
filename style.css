@@ -1,215 +1,230 @@
 /* CSS "bonito" */
-        :root {
-            --cor-primaria: #007bff;
-            --cor-secundaria: #f8f9fa;
-            --cor-texto: #333;
-            --cor-borda: #dee2e6;
-            --sombra: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
+:root {
+    --cor-primaria: #007bff;
+    --cor-secundaria: #f8f9fa;
+    --cor-texto: #333;
+    --cor-borda: #dee2e6;
+    --sombra: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #eef2f5;
-            color: var(--cor-texto);
-            display: grid;
-            place-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #eef2f5;
+    color: var(--cor-texto);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
 
-        .container {
-            width: 100%;
-            max-width: 700px; /* Aumentei um pouco para a tabela caber */
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: var(--sombra);
-            overflow: hidden;
-        }
+.container {
+    width: 100%;
+    max-width: 700px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+}
 
-        header {
-            background-color: var(--cor-primaria);
-            color: white;
-            padding: 20px 25px;
-            text-align: center;
-        }
+header {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 20px 25px;
+    text-align: center;
+}
 
-        header h1 {
-            font-size: 1.5rem;
-        }
+header h1 {
+    font-size: 1.5rem;
+}
 
-        form {
-            padding: 25px;
-            display: grid;
-            gap: 15px;
-        }
+form {
+    padding: 25px;
+    display: grid;
+    gap: 15px;
+}
 
-        /* Estilos para o formulário (sem alterações) */
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .form-group label { margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 12px 15px; border: 1px solid var(--cor-borda);
-            border-radius: 5px; font-size: 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .form-group input:focus, .form-group select:focus {
-            outline: none; border-color: var(--cor-primaria);
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
-        }
-        button[type="submit"] {
-            background-color: var(--cor-primaria); color: white; font-size: 1rem;
-            font-weight: 600; border: none; padding: 15px; border-radius: 5px;
-            cursor: pointer; transition: background-color 0.2s; margin-top: 10px;
-        }
-        button[type="submit"]:hover { background-color: #0056b3; }
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label { margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+.form-group input, .form-group select {
+    width: 100%; padding: 12px 15px; border: 1px solid var(--cor-borda);
+    border-radius: 5px; font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus, .form-group select:focus {
+    outline: none; border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+button[type="submit"] {
+    background-color: var(--cor-primaria); color: white; font-size: 1rem;
+    font-weight: 600; border: none; padding: 15px; border-radius: 5px;
+    cursor: pointer; transition: background-color 0.2s; margin-top: 10px;
+}
+button[type="submit"]:hover { background-color: #0056b3; }
 
-        #resultado {
-            padding: 0 25px 25px; text-align: center;
-            font-size: 1.1rem; font-weight: 600; color: #333;
-        }
-        #resultado span { color: var(--cor-primaria); font-size: 1.5rem; }
+#resultado {
+    padding: 0 25px 25px; text-align: center;
+    font-size: 1.1rem; font-weight: 600; color: #333;
+}
+#resultado span { color: var(--cor-primaria); font-size: 1.5rem; }
 
-        /* --- NOVOS ESTILOS PARA A TABELA --- */
-        .historico-container {
-            padding: 0 25px 25px;
-        }
-        
-        .historico-container h2 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--cor-borda);
-            padding-bottom: 5px;
-        }
+/* --- ESTILOS PARA A TABELA DE HISTÓRICO --- */
+.historico-container {
+    padding: 0 25px 25px;
+}
 
-        .tabela-wrapper {
-            max-height: 250px;
-            overflow-y: auto;
-            border: 1px solid var(--cor-borda);
-            border-radius: 5px;
-        }
+.historico-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 5px;
+}
 
-        .historico-tabela {
-            width: 100%;
-            border-collapse: collapse;
-        }
+.tabela-wrapper {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid var(--cor-borda);
+    border-radius: 5px;
+}
 
-        .historico-tabela th,
-        .historico-tabela td {
-            padding: 10px 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--cor-borda);
-        }
+.historico-tabela {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-        .historico-tabela th {
-            background-color: #f8f9fa;
-            font-size: 0.85rem;
-            font-weight: 600;
-            position: sticky; /* Cabeçalho gruda no topo ao rolar */
-            top: 0;
-        }
+.historico-tabela th,
+.historico-tabela td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda);
+}
 
-        .historico-tabela tbody tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .historico-tabela tbody tr:hover {
-            background-color: #f1f3f5;
-        }
+.historico-tabela th {
+    background-color: #f8f9fa;
+    font-size: 0.85rem;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+}
 
-        .historico-tabela td {
-            font-size: 0.9rem;
-        }
+.historico-tabela tbody tr:last-child td {
+    border-bottom: none;
+}
 
-        .botoes-historico {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        /* Botão genérico */
-        .btn {
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid transparent;
-            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-        }
+.historico-tabela tbody tr:hover {
+    background-color: #f1f3f5;
+}
 
-        #imprimirHistorico {
-            background-color: #28a745;
-            color: white;
-            border-color: #28a745;
-        }
-        #imprimirHistorico:hover { background-color: #218838; }
+.historico-tabela td {
+    font-size: 0.9rem;
+}
 
-        #limparHistorico {
-            background: none;
-            border-color: #dc3545;
-            color: #dc3545;
-        }
-        #limparHistorico:hover { background-color: #dc3545; color: white; }
-        
+.botoes-historico {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
 
-        /* --- ESTILOS DE IMPRESSÃO --- */
-        /* Isso só é aplicado quando a janela de impressão é aberta */
-        @media print {
-            /* Esconde tudo, exceto o container do histórico */
-            body > *:not(.historico-container) {
-                display: none;
-            }
+.btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
 
-            /* Reseta o body para impressão */
-            body {
-                background-color: #fff;
-                padding: 0;
-            }
+#imprimirHistorico {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+#imprimirHistorico:hover { background-color: #218838; }
 
-            /* Garante que o container do histórico ocupe a página */
-            .container {
-                box-shadow: none;
-                border: none;
-                width: 100%;
-                max-width: 100%;
-            }
+#limparHistorico {
+    background: none;
+    border-color: #dc3545;
+    color: #dc3545;
+}
+#limparHistorico:hover { background-color: #dc3545; color: white; }
 
-            .historico-container {
-                padding: 0;
-            }
-            
-            /* Esconde os botões e a barra de rolagem na impressão */
-            .botoes-historico,
-            .tabela-wrapper {
-                display: block;
-                max-height: none;
-                overflow: visible;
-                border: none;
-            }
 
-            .historico-tabela th, .historico-tabela td {
-                border: 1px solid #ddd; /* Adiciona bordas para impressão */
-            }
+/* --- ESTILOS DE IMPRESSÃO (PDF BRANCO) - VERSÃO CORRIGIDA --- */
+@media print {
+    
+    /* Define o tamanho e margens da página de impressão */
+    @page {
+        size: A4;
+        margin: 1.5cm;
+    }
 
-            .historico-tabela th {
-                background-color: #eee;
-            }
+    /* Reseta o body e remove o padding da tela */
+    body {
+        background-color: #fff;
+        padding: 0;
+        margin: 0;
+        font-family: Arial, sans-serif; /* Fonte mais segura para impressão */
+    }
 
-            /* Força quebra de página antes, se necessário (opcional) */
-            .historico-container {
-                page-break-before: always;
-            }
+    /* Esconde o que NÃO queremos imprimir */
+    .container > header,
+    .container > form,
+    .container > #resultado,
+    .botoes-historico {
+        display: none;
+    }
 
-            h2 {
-                text-align: center;
-                margin-bottom: 15px;
-            }
-        }
+    /* Remove estilos de "container" da tela */
+    .container {
+        box-shadow: none;
+        border: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    /* Ajusta o container do histórico */
+    .historico-container {
+        padding: 0;
+    }
+
+    /* Remove a rolagem e borda da tabela */
+    .tabela-wrapper {
+        overflow: visible;
+        max-height: none;
+        border: none;
+    }
+    
+    /* Estiliza a tabela para impressão */
+    .historico-tabela {
+        width: 100%;
+        border-collapse: collapse; /* Garante que as bordas fiquem limpas */
+    }
+    
+    .historico-tabela th, .historico-tabela td {
+        border: 1px solid #777; /* Borda cinza visível */
+        padding: 8px;
+        font-size: 10pt;
+    }
+
+    .historico-tabela th {
+        background-color: #f0f0f0 !important; /* Fundo cinza claro */
+        font-weight: bold;
+    }
+
+    .historico-container h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 14pt;
+        border-bottom: none; /* Remove a borda do título na impressão */
+    }
+}
